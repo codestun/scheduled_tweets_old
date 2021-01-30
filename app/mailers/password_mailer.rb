@@ -4,10 +4,10 @@ class PasswordMailer < ApplicationMailer
   # with the following lookup:
   #
   #   en.password_mailer.reset.subject
-  #
-  def reset
-    @greeting = "Hi"
 
-    mail to: "to@example.org"
+  def reset
+    @token = params[:user].signed_id(purpose: 'password_reset', expires_in: 15.minutes)
+
+    mail to: params[:user].email
   end
 end
