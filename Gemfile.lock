@@ -268,7 +268,8 @@ DEPENDENCIES
   capybara (>= 2.15)
   jbuilder (~> 2.7)
   listen (~> 3.2)
-  omniauth-rails_csrf_protection
+  omniauth (~> 2.0)
+  omniauth-rails_csrf_protection (~> 1.0)
   omniauth-twitter (~> 1.4)
   pg (~> 1.1)
   puma (~> 4.1)
