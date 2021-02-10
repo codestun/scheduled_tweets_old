@@ -1,0 +1,65 @@
+diff --git a/Gemfile b/Gemfile
+index 657d360..e08de8f 100644
+--- a/Gemfile
++++ b/Gemfile
+@@ -53,8 +53,7 @@ end
+ # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+ 
+-# freeze omniauth because 2.0 is broken
+-gem "omniauth", "~> 1.9.1"
++gem "omniauth"
+ gem 'omniauth-rails_csrf_protection', '~> 1.0'
+ gem 'omniauth-twitter', '~> 1.4'
+ 
+diff --git a/Gemfile.lock b/Gemfile.lock
+index 603b0e9..aa459a8 100644
+--- a/Gemfile.lock
++++ b/Gemfile.lock
+@@ -133,7 +133,7 @@ GEM
+     nokogiri (1.11.1-x86_64-linux)
+       racc (~> 1.4)
+     oauth (0.5.5)
+-    omniauth (2.0.1)
++    omniauth (2.0.2)
+       hashie (>= 3.4.6)
+       rack (>= 1.6.2, < 3)
+       rack-protection
+@@ -268,7 +268,7 @@ DEPENDENCIES
+   capybara (>= 2.15)
+   jbuilder (~> 2.7)
+   listen (~> 3.2)
+-  omniauth (~> 2.0)
++  omniauth
+   omniauth-rails_csrf_protection (~> 1.0)
+   omniauth-twitter (~> 1.4)
+   pg (~> 1.1)
+diff --git a/config/credentials.yml.enc b/config/credentials.yml.enc
+index 56fd9ae..e30999c 100644
+--- a/config/credentials.yml.enc
++++ b/config/credentials.yml.enc
+@@ -1,2 +1 @@
+-XfwCCueVyjF8FSJeqqEElGxBcu/rVZOjsIxAz3ExJIAizJaFrd4i7W6enPSasUQUsDQgC3VV4hGhy/qQN+4WEQUs2QMZMGlO06i8E+TFDdQk9hZGPm412KXIn2BcxeWBQpZtSkn/z6x6vhkHnZaVDsjgqp7nStwjMdPe/cbaHAH0vfAEP9gtTnP6xiOAtVAPCGPI3iM80iDb05nw4wGp3KxEIwewuZL+Ma93VzE9J82eo+zGg44225buYLk2kEfHI0jEzGoopiTJDOQHDDYufKtF359pez2uRoqfkfMifxJ+qwgsS+uvV9W24HodWp1VHoRgFBSEYrF7OaIpoWBN8tCV+Qi3pMQM83JBVnV0mV2fOqpf2g6AxfKaSys30IA7jJAuEocpCC+jh/roTiqDCQki9uoQQ2cengGr--FmsxXGL9mHDkHoaD--d1tF+y7Mr0fpfbMVwV7FGw==
+-
++ZSphMe6SHfZdnvlnfE4Xk3jgYHb3URotuksjfYEM0WTfKHcue4DiYnMsF/0GmH2bnzlmjrtzG9WH/1fpAh6ljzlQhPhBK/EvOIYDic25O+GJhzUUhGSPgQD9SV4J6yGmyQttSlTNBUB78pgxSBE574DhQDR9UisfVAScGdCGv0GB0AW36i+F2BK/G/CdSMmhvS8b6+IzjyY8AQ5yRq7RSWVIh8SYwuguPLiKbNQt0x2BjaOC2dznZzAyEbgWSXeAdRiskkVYi7/236FxnpyrJeu8zVpHsLmgfMlCfL0J0Pxbp6WcoNDl3RzisYdDWvoCiNneMKbNEqPBSK6TwmXHK7kGV9qljNlN2NFfIElXzev7Kr64pAZL7G9rGIJvjZBnJeF3EBvjmVJ1p9sHfKy6bjcXHFAGmqzSUnwCYvcVUk9Wu24CP6loJacxa5CBK9hr90BW29OijwfoCcd7cYJmJk3ANIFRBA7QYXZJt02hI+yDiMIUtqOb9vp3Q/CfCSdrcAR/cWrLkL1nN3+bWk4rnFlv5jolYyn9vWXBB0GBCu9t8tD43Q==--+v/AdDe5DA+ZszH1--MJ3zXni5OWHN8KwfEMsGgg==
+\ No newline at end of file
+diff --git a/config/credentials/development.yml.enc b/config/credentials/development.yml.enc
+deleted file mode 100644
+index 3632bc4..0000000
+--- a/config/credentials/development.yml.enc
++++ /dev/null
+@@ -1 +0,0 @@
+-L4e5Ar2uj3HpypdW4PJBnRN03ezcFsAJlVSXNg/NkB/C6QLKUWcZVc9pfsByNn6UDmKo/re72dAeWDUHM84+/NDRGqY=--8GQ2X9BGt7ET0Bd/--tnV+++fpd6DYsDofwZSEBw==
+\ No newline at end of file
+diff --git a/config/initializers/omniauth.rb b/config/initializers/omniauth.rb
+index e6afac4..ed53944 100644
+--- a/config/initializers/omniauth.rb
++++ b/config/initializers/omniauth.rb
+@@ -1,5 +1,5 @@
+-OmniAuth.config.allowed_request_methods = %i[post get]
+-OmniAuth.config.silence_get_warning = true
++# OmniAuth.config.allowed_request_methods = %i[post get]
++# OmniAuth.config.silence_get_warning = true
+ 
+ Rails.application.config.middleware.use OmniAuth::Builder do
+   provider :twitter, Rails.application.credentials.dig(:twitter, :api_key),

@@ -54,8 +54,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # freeze omniauth because 2.0 is broken
-gem "omniauth", "~> 1.9.1"
-gem 'omniauth-rails_csrf_protection', '~> 1.0'
-gem 'omniauth-twitter', '~> 1.4'
+gem 'omniauth'
+gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-twitter'
 
 gem 'twitter', '~> 7.0'
